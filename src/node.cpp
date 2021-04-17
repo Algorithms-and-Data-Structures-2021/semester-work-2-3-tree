@@ -5,7 +5,9 @@
 
 namespace itis {
 
-  TwoThreeNode::TwoThreeNode(int k, TwoThreeNode* p) : size(1), key{k, 0}, parent{p} {}
+  TwoThreeNode::TwoThreeNode(int k, TwoThreeNode *first_, TwoThreeNode *second_, TwoThreeNode *third_, TwoThreeNode *fourth_, TwoThreeNode *parent_):
+      size(1), key{k, 0}, first(first_), second(second_),
+      third(third_), fourth(fourth_), parent(parent_) {}
 
   bool TwoThreeNode::find(int k) {  // Этот метод возвращает true, если ключ k находится в вершине, иначе false.
     for (int i = 0; i < size; ++i) {
@@ -16,20 +18,39 @@ namespace itis {
     return false;
   }
 
-  void TwoThreeNode::swap(int &x, int &y) {
+  void TwoThreeNode::swap(int &x, int &y) { // поменять ключи местами, используется в сортировке
     int r = x;
     x = y;
     y = r;
   }
 
-  void TwoThreeNode::sort() {  // Ключи в вершинах должны быть отсортированы
-    if (size == 1) {
+  void TwoThreeNode::sort2(int &x, int &y) { // сортировка вершины с 2 ключами, используется в сортировке
+    if(x > y) {
+      swap(x, y);
+    }
+  }
+
+  void TwoThreeNode::sort3(int &x, int &y, int &z) { // сортировка вершины с 3 ключами, используется в сортировке
+    if(x > y) {
+      swap(x, y);
+    }
+    if(x > z) {
+      swap(x, z);
+    }
+    if(y > z) {
+      swap(y, z);
+    }
+  }
+
+  void TwoThreeNode::sort() { // Сортировка ключей в вершине по возрастанию
+    if(size == 1) {
       return;
     }
-    if (size == 2) {
-      if (key[0] > key[1]) {
-        swap(key[0], key[1]);
-      }
+    if(size == 2) {
+      sort2(key[0], key[1]);
+    }
+    if(size == 3) {
+      sort3(key[0], key[1], key[2]);
     }
   }
 
@@ -42,14 +63,17 @@ namespace itis {
   void TwoThreeNode::remove_from_node(int k) {  // Удаляем ключ k из вершины (не из дерева)
     if (size >= 1 && key[0] == k) {
       key[0] = key[1];
+      key[1] = 0;
       size--;
     } else if (size == 2 && key[1] == k) {
+      key[1] = 0;
       size--;
     }
   }
 
   void TwoThreeNode::become_node2(int k, TwoThreeNode *first_, TwoThreeNode *second_) {  // Преобразовать в 2-вершину.
     key[0] = k;
+    key[1] = 0;
     first = first_;
     second = second_;
     third = nullptr;

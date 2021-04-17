@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "data_structure.hpp"
+#include "traversal_algorithm.h"
 
 using namespace itis;
 using namespace std;
@@ -8,7 +9,20 @@ using namespace std;
 int main(int argc, char *argv[]) {
   TwoThreeTree tree;
 
-  tree.insert(2)
+  for(int i = 1; i < 20; i++){
+    tree.Insert(i);
+  }
+  cout<<tree.Height()<<endl;
+  tree.Clear();
+
+  TraversalAlgorithm *algorithm = new BreadthFirstTraversalAlgorithm;
+
+  std::cout << "Level-order (BFS): ";
+  tree.Traverse(*algorithm);
+  std::cout << std::endl;
+
+  delete algorithm;
+
   for (int index = 0; index < argc; index++) {
     cout << index << ": " << argv[index] << endl;
   }
