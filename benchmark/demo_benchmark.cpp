@@ -12,8 +12,8 @@ using namespace std;
 using namespace itis;
 
 // абсолютный путь до набора данных и папки проекта
-static constexpr auto kDatasetPath = string_view{PROJECT_DATASET_DIR};
-static constexpr auto kProjectPath = string_view{PROJECT_SOURCE_DIR};
+static constexpr auto kDatasetPath = string_view{'C:/Users/PC/CLionProjects/semester-work-2-3-tree/dataset/data'};
+static constexpr auto kProjectPath = string_view{'C:/Users/PC/CLionProjects/semester-work-2-3-tree'};
 
 int main(int argc, char **argv) {
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
   auto input_file = ifstream(path + "/dataset-example.csv");
 
   if (input_file) {
-    // чтение и обработка набора данных ...
+     //чтение и обработка набора данных ...
   }
 
   // Контрольный тест: операции добавления, удаления, поиска и пр. над структурой данных
@@ -53,7 +53,6 @@ int main(int argc, char **argv) {
 
   const auto time_point_before = chrono::high_resolution_clock::now();
 
-  // здесь находится участок кода, время которого необходимо замерить
 
   const auto time_point_after = chrono::high_resolution_clock::now();
 
