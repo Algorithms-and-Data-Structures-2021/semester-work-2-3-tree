@@ -12,8 +12,7 @@ int main(int argc, char *argv[]) {
   for(int i = 1; i < 20; i++){
     tree.Insert(i);
   }
-  cout<<tree.Height()<<endl;
-  tree.Clear();
+  cout << tree.Search(21) << endl;
 
   TraversalAlgorithm *algorithm = new BreadthFirstTraversalAlgorithm;
 
