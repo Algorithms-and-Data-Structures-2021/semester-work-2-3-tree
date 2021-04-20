@@ -9,10 +9,15 @@ using namespace std;
 int main(int argc, char *argv[]) {
   TwoThreeTree tree;
 
-  for(int i = 1; i < 20; i++){
+  for(int i = 1; i < 5; i++){
     tree.Insert(i);
   }
-  cout << tree.Search(21) << endl;
+//  for(int i = 1; i < 5; i++){
+//    tree.Remove(i);
+//  }
+tree.Remove(2);
+tree.Remove(4);
+tree.Remove(3);
 
   TraversalAlgorithm *algorithm = new BreadthFirstTraversalAlgorithm;
 
