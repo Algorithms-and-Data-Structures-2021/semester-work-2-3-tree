@@ -19,6 +19,7 @@ tree.Remove(2);
 tree.Remove(4);
 tree.Remove(3);
 
+
   TraversalAlgorithm *algorithm = new BreadthFirstTraversalAlgorithm;
 
   std::cout << "Level-order (BFS): ";

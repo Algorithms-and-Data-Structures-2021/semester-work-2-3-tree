@@ -81,7 +81,7 @@ namespace itis {
     size = 1;
   }
 
-  bool TwoThreeNode::is_leaf() {  // Является ли узел листом; проверка используется при вставке и удалении.
+  bool TwoThreeNode::is_leaf() {  // Является ли вершина листом; проверка используется при вставке и удалении.
     return (first == nullptr) && (second == nullptr) && (third == nullptr);
   }
 };

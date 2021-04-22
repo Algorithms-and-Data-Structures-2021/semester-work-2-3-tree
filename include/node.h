@@ -10,7 +10,6 @@
 namespace itis {
 
   struct TwoThreeNode {
-    // private:
     int size;
     int key[3];
     TwoThreeNode *first{nullptr};
@@ -24,22 +23,22 @@ namespace itis {
                                   TwoThreeNode *third_ = nullptr, TwoThreeNode *fourth_ = nullptr,
                                                                   TwoThreeNode *parent_ = nullptr);
 
-    bool find(int k);
+    bool find(int k); // поиск ключа в вершине
 
-    void swap(int &x, int &y);
+    void swap(int &x, int &y); // вспомогательная операция, используется в сортировке
 
-    void sort2(int &x, int &y);
+    void sort2(int &x, int &y); // вспомогательная операция, используется в сортировке
 
-    void sort3(int &x, int &y, int &z);
+    void sort3(int &x, int &y, int &z); // вспомогательная операция, используется в сортировке
 
-    void sort();
+    void sort(); // сортировка ключей в вершине
 
-    void insert_to_node(int k);
+    void insert_to_node(int k); // вставка ключа в вершину
 
-    void remove_from_node(int k);
+    void remove_from_node(int k); // удаление ключа из вершины
 
-    void become_node2(int k, TwoThreeNode *first_, TwoThreeNode *second_);
+    void become_node2(int k, TwoThreeNode *first_, TwoThreeNode *second_); // преобразование в 2-вершину
 
-    bool is_leaf();
+    bool is_leaf(); // является ли вершина листом
   };
 }

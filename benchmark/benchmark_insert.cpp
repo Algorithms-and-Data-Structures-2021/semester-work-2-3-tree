@@ -23,6 +23,7 @@ int main() {
 
   // Tip 1: входные аргументы позволяют более гибко контролировать параметры вашей программы
   const auto path = string(kDatasetPath);
+  const auto output_path = string(kProjectPath) + "/benchmark/result/benchmark_insert_results.csv";
   cout << "Path to the 'dataset/' folder: " << path << endl;
 
   // Tip 2: для перевода строки в число можете использовать функцию stoi (string to integer)
@@ -31,31 +32,39 @@ int main() {
   vector <string> folders = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10"};
   vector <string> files = {"100", "500", "1000", "5000", "10000", "50000", "100000", "500000", "1000000", "5000000"};
   TwoThreeTree tree;
-  for (string folder : folders) {
-    for (string file : files) {
-      string line = "1";
-      auto input_file = ifstream(path + "/"+ "insert/" + folder + "/" + file + ".csv");
-      cout << (path + "/"+ "insert/" + folder + "/" + file) << endl;
-      const auto time_point_before_insert = chrono::steady_clock::now();
-      // здесь находится участок кода, время которого необходимо замерить
 
-      if (input_file) {
-        while (line != "") {
-          getline(input_file, line);
-          if (line == "") {
-            break;
+  for (string file : files) { // Проходим по всем 10 .csv файлам
+    for (string folder : folders) { // Проходим по всем 10 папкам с файлами
+      for (int i = 1; i < 11; i++) { // Запускаем замерку времени 10 раз
+        string line = "1";
+        auto input_file = ifstream(path + "/" + "insert/" + folder + "/" + file + ".csv");
+        cout << (path + "/" + "insert/" + folder + "/" + file) << endl;
+        const auto time_point_before_insert = chrono::steady_clock::now();
+
+        // здесь находится участок кода, время которого необходимо замерить
+        if (input_file) {
+          while (line != "") {
+            getline(input_file, line);
+            if (line == "") {
+              break;
+            }
+            tree.Insert(stoi(line));
           }
-          tree.Insert(stoi(line));
         }
+
+        const auto time_point_after_insert = chrono::steady_clock::now();
+        const auto time_diff_insert = time_point_after_insert - time_point_before_insert;
+        const auto time_elapsed_ns_insert = chrono::duration_cast<chrono::nanoseconds>(time_diff_insert).count();
+        cout << time_elapsed_ns_insert << endl;
+
+        tree.Clear();
+        input_file.close();
+
+        // Открываем файл для записи и вносим полученые данные
+        auto output_file = fstream(output_path, ios::app);
+        output_file << folder << "," << file << "," <<  i << "," << time_elapsed_ns_insert << endl;
+        output_file.close();
       }
-
-      const auto time_point_after_insert = chrono::steady_clock::now();
-      const auto time_diff_insert = time_point_after_insert - time_point_before_insert;
-      const auto time_elapsed_ns_insert = chrono::duration_cast<chrono::nanoseconds>(time_diff_insert).count();
-      cout << time_elapsed_ns_insert << endl;
-
-      tree.Clear();
-      input_file.close();
     }
   }
   return 0;

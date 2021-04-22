@@ -6,10 +6,8 @@
 add_executable(benchmark_insert benchmark_insert.cpp)
 add_executable(benchmark_search benchmark_search.cpp)
 add_executable(benchmark_remove benchmark_remove.cpp)
-add_executable(benchmark_clear benchmark_clear.cpp)
 
 # Примечание: Не забываем подключить (прилинковать) библиотеку ${PROJECT_NAME} с реализацией структуры данных.
 target_link_libraries(benchmark_insert PRIVATE project_paths project_warnings ${PROJECT_NAME})
 target_link_libraries(benchmark_search PRIVATE project_paths project_warnings ${PROJECT_NAME})
 target_link_libraries(benchmark_remove PRIVATE project_paths project_warnings ${PROJECT_NAME})
-target_link_libraries(benchmark_clear PRIVATE project_paths project_warnings ${PROJECT_NAME})

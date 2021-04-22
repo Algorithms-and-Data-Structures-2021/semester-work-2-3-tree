@@ -5,9 +5,9 @@ using namespace std;
 
 namespace itis {
 
-  TwoThreeTree::~TwoThreeTree() {
-    Clear();
-  }
+//  TwoThreeTree::~TwoThreeTree() {
+//    Clear();
+//  }
 
   void TwoThreeTree::Clear() {
     clear(root_);
@@ -78,7 +78,7 @@ namespace itis {
       }
 
       TwoThreeNode *tmp = item->parent;
-      delete item;
+      delete [] item;
       return tmp;
     } else {
       x->parent = item;   // Так как в эту ветку попадает только корень,
@@ -112,8 +112,8 @@ namespace itis {
     return nullptr;
   }
 
-  TwoThreeNode *TwoThreeTree::Remove(int k) {
-    return remove(k, root_);
+  void *TwoThreeTree::Remove(int k) {
+    root_ = remove(k, root_);
   }
 
   TwoThreeNode *TwoThreeTree::remove(int k, TwoThreeNode *node){
@@ -185,7 +185,7 @@ namespace itis {
         if (parent->first->first != nullptr) parent->first->first->parent = parent->first;
 
         parent->remove_from_node(parent->key[0]);
-        delete first;
+        delete [] first;
       } else if (second == leaf) {
         first->insert_to_node(parent->key[0]);
         parent->remove_from_node(parent->key[0]);
@@ -197,7 +197,7 @@ namespace itis {
         parent->second = parent->third;
         parent->third = nullptr;
 
-        delete second;
+        delete [] second;
       } else if (third == leaf) {
         second->insert_to_node(parent->key[1]);
         parent->third = nullptr;
@@ -207,7 +207,7 @@ namespace itis {
 
         if (second->third != nullptr)  second->third->parent = second;
 
-        delete third;
+        delete [] third;
       }
     } else if ((parent->size == 2) && ((first->size == 2) || (second->size == 2) || (third->size == 2))) {
       if (third == leaf) {
@@ -344,7 +344,7 @@ namespace itis {
       if (parent->first->third != nullptr) parent->first->third->parent = parent->first;
 
       parent->remove_from_node(parent->key[0]);
-      delete parent->second;
+      delete [] parent->second;
       parent->second = nullptr;
     }
 
@@ -353,7 +353,7 @@ namespace itis {
       if (parent->first != nullptr) tmp = parent->first;
       else tmp = parent->second;
       tmp->parent = nullptr;
-      delete parent;
+      delete [] parent;
       return tmp;
     }
     return parent;
