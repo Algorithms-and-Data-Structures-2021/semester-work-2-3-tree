@@ -39,6 +39,7 @@ int main() {
         string line = "1";
         auto input_file = ifstream(path + "/" + "remove/" + folder + "/" + file + ".csv");
         cout << (path + "/" + "remove/" + folder + "/" + file) << endl;
+
         if (input_file) {
           while (line != "") {
             getline(input_file, line);

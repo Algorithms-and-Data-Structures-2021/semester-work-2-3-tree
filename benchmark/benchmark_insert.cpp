@@ -23,7 +23,7 @@ int main() {
 
   // Tip 1: входные аргументы позволяют более гибко контролировать параметры вашей программы
   const auto path = string(kDatasetPath);
-  const auto output_path = string(kProjectPath) + "/benchmark/result/benchmark_insert_results.csv";
+  const auto output_path = string(kProjectPath) + "/benchmark/result/benchmark_insert_result.csv";
   cout << "Path to the 'dataset/' folder: " << path << endl;
 
   // Tip 2: для перевода строки в число можете использовать функцию stoi (string to integer)
@@ -62,7 +62,7 @@ int main() {
 
         // Открываем файл для записи и вносим полученые данные
         auto output_file = fstream(output_path, ios::app);
-        output_file << folder << "," << file << "," <<  i << "," << time_elapsed_ns_insert << endl;
+        output_file << folder << "," << file << "," << i << "," << time_elapsed_ns_insert << endl;
         output_file.close();
       }
     }
