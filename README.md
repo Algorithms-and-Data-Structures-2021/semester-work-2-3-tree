@@ -130,7 +130,7 @@ dataset/data/
 
 ##### Примеры запуска
 
-_Для запуска просто нажмите run benchmark_<insert or remove or search>.cpp._
+_Для запуска просто нажмите run benchmark_insert or remove or search.cpp._
 
 
 ## Источники
