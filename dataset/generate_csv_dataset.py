@@ -1,5 +1,5 @@
-import csv
-import random
+import csv  #csv
+import random #random
 
 
 def csv_writer(k, path):

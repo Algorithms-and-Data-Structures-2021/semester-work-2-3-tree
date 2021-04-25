@@ -5,13 +5,13 @@
 
 namespace itis {
 
-  TwoThreeNode::TwoThreeNode(int k, TwoThreeNode *first_, TwoThreeNode *second_, TwoThreeNode *third_, TwoThreeNode *fourth_, TwoThreeNode *parent_):
-      size(1), key{k, 0}, first(first_), second(second_),
+  TwoThreeNode::TwoThreeNode(int key, TwoThreeNode *first_, TwoThreeNode *second_, TwoThreeNode *third_, TwoThreeNode *fourth_, TwoThreeNode *parent_):
+      size(1), key_{key, 0}, first(first_), second(second_),
       third(third_), fourth(fourth_), parent(parent_) {}
 
-  bool TwoThreeNode::find(int k) {  // Этот метод возвращает true, если ключ k находится в вершине, иначе false.
+  bool TwoThreeNode::find(int key) {  // Этот метод возвращает true, если ключ k находится в вершине, иначе false.
     for (int i = 0; i < size; ++i) {
-      if (key[i] == k) {
+      if (key_[i] == key) {
         return true;
       }
     }
@@ -47,33 +47,33 @@ namespace itis {
       return;
     }
     if(size == 2) {
-      sort2(key[0], key[1]);
+      sort2(key_[0], key_[1]);
     }
     if(size == 3) {
-      sort3(key[0], key[1], key[2]);
+      sort3(key_[0], key_[1], key_[2]);
     }
   }
 
-  void TwoThreeNode::insert_to_node(int k) {  // Вставляем ключ k в вершину (не в дерево)
-    key[size] = k;
+  void TwoThreeNode::insert_to_node(int key) {  // Вставляем ключ k в вершину (не в дерево)
+    key_[size] = key;
     size++;
     sort();
   }
 
-  void TwoThreeNode::remove_from_node(int k) {  // Удаляем ключ k из вершины (не из дерева)
-    if (size >= 1 && key[0] == k) {
-      key[0] = key[1];
-      key[1] = 0;
+  void TwoThreeNode::remove_from_node(int key) {  // Удаляем ключ k из вершины (не из дерева)
+    if (size >= 1 && key_[0] == key) {
+      key_[0] = key_[1];
+      key_[1] = 0;
       size--;
-    } else if (size == 2 && key[1] == k) {
-      key[1] = 0;
+    } else if (size == 2 && key_[1] == key) {
+      key_[1] = 0;
       size--;
     }
   }
 
-  void TwoThreeNode::become_node2(int k, TwoThreeNode *first_, TwoThreeNode *second_) {  // Преобразовать в 2-вершину.
-    key[0] = k;
-    key[1] = 0;
+  void TwoThreeNode::become_node2(int key, TwoThreeNode *first_, TwoThreeNode *second_) {  // Преобразовать в 2-вершину.
+    key_[0] = key;
+    key_[1] = 0;
     first = first_;
     second = second_;
     third = nullptr;

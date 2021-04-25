@@ -5,11 +5,7 @@ using namespace std;
 
 namespace itis {
 
-//  TwoThreeTree::~TwoThreeTree() {
-//    Clear();
-//  }
-
-  void TwoThreeTree::Clear() {
+  void TwoThreeTree::Clear() { //
     clear(root_);
     root_ = nullptr;
   }
@@ -23,24 +19,24 @@ namespace itis {
     }
   }
 
-  void TwoThreeTree::Insert(int k){
+  void TwoThreeTree::Insert(int key){
     if (root_ != nullptr){
-      insert(k, root_);
+      insert(key, root_);
     } else {
-      root_ = new TwoThreeNode(k);
+      root_ = new TwoThreeNode(key);
     }
   }
 
-  void TwoThreeTree::insert(int k, TwoThreeNode *node) {
+  void TwoThreeTree::insert(int key, TwoThreeNode *node) {
 
     if (node->is_leaf()) {
-      node->insert_to_node(k);
-    } else if (k <= node->key[0]) {
-      insert(k, node->first);
-    } else if ((node->size == 1) || ((node->size == 2) && k <= node->key[1])) {
-      insert(k, node->second);
+      node->insert_to_node(key);
+    } else if (key <= node->key_[0]) {
+      insert(key, node->first);
+    } else if ((node->size == 1) || ((node->size == 2) && key <= node->key_[1])) {
+      insert(key, node->second);
     } else {
-      insert(k, node->third);
+      insert(key, node->third);
     }
     root_ = split(node);
   }
@@ -48,15 +44,15 @@ namespace itis {
   TwoThreeNode *TwoThreeTree::split(TwoThreeNode *item) {
     if (item->size < 3) return item;
 
-    TwoThreeNode *x = new TwoThreeNode(item->key[0], item->first, item->second, nullptr, nullptr, item->parent); // Создаем две новые вершины,
-    TwoThreeNode *y = new TwoThreeNode(item->key[2], item->third, item->fourth, nullptr, nullptr, item->parent);  // которые имеют такого же родителя, как и разделяющийся элемент.
+    TwoThreeNode *x = new TwoThreeNode(item->key_[0], item->first, item->second, nullptr, nullptr, item->parent); // Создаем две новые вершины,
+    TwoThreeNode *y = new TwoThreeNode(item->key_[2], item->third, item->fourth, nullptr, nullptr, item->parent);  // которые имеют такого же родителя, как и разделяющийся элемент.
     if (x->first)  x->first->parent = x;    // Правильно устанавливаем "родителя" "сыновей".
     if (x->second) x->second->parent = x;   // После разделения, "родителем" "сыновей" является "дедушка",
     if (y->first)  y->first->parent = y;    // Поэтому нужно правильно установить указатели.
     if (y->second) y->second->parent = y;
 
     if (item->parent) {
-      item->parent->insert_to_node(item->key[1]);
+      item->parent->insert_to_node(item->key_[1]);
 
       if (item->parent->first == item) item->parent->first = nullptr;
       else if (item->parent->second == item) item->parent->second = nullptr;
@@ -83,55 +79,55 @@ namespace itis {
     } else {
       x->parent = item;   // Так как в эту ветку попадает только корень,
       y->parent = item;   // то мы "родителем" новых вершин делаем разделяющийся элемент.
-      item->become_node2(item->key[1], x, y);
+      item->become_node2(item->key_[1], x, y);
       return item;
     }
   }
 
-  TwoThreeNode *TwoThreeTree::Search(int k) {
-    return search(k, root_);
+  TwoThreeNode *TwoThreeTree::Search(int key) {
+    return search(key, root_);
   }
 
-  TwoThreeNode *TwoThreeTree::search(int k, TwoThreeNode *node) {
+  TwoThreeNode *TwoThreeTree::search(int key, TwoThreeNode *node) {
     if(node == nullptr) {
       return nullptr;
     }
 
-    if(node->find(k)) {
+    if(node->find(key)) {
       return node;
     }
-    if(k < node->key[0]) {
-      return search(k, node->first);
+    if(key < node->key_[0]) {
+      return search(key, node->first);
     }
-    if( ((node->size == 2) && (k < node->key[1])) || (node->size == 1) ) {
-      return search(k, node->second);
+    if( ((node->size == 2) && (key < node->key_[1])) || (node->size == 1) ) {
+      return search(key, node->second);
     }
     if(node->size == 2) {
-      return search(k, node->third);
+      return search(key, node->third);
     }
     return nullptr;
   }
 
-  void *TwoThreeTree::Remove(int k) {
-    root_ = remove(k, root_);
+  void *TwoThreeTree::Remove(int key) {
+    root_ = remove(key, root_);
   }
 
-  TwoThreeNode *TwoThreeTree::remove(int k, TwoThreeNode *node){
-    TwoThreeNode *item = search(k, node); // Ищем узел, где находится ключ k
+  TwoThreeNode *TwoThreeTree::remove(int key, TwoThreeNode *node){
+    TwoThreeNode *item = search(key, node); // Ищем узел, где находится ключ k
 
     if (!item) return node;
 
     TwoThreeNode *min = nullptr;
-    if (item->key[0] == k) min = findMin(item->second); // Ищем эквивалентный ключ
+    if (item->key_[0] == key) min = findMin(item->second); // Ищем эквивалентный ключ
     else min = findMin(item->third);
 
     if (min) { // Меняем ключи местами
-      int &z = (k == item->key[0] ? item->key[0] : item->key[1]);
-      item->swap(z, min->key[0]);
+      int &z = (key == item->key_[0] ? item->key_[0] : item->key_[1]);
+      item->swap(z, min->key_[0]);
       item = min; // Перемещаем указатель на лист, т.к. min - всегда лист
     }
 
-    item->remove_from_node(k); // И удаляем требуемый ключ из листа
+    item->remove_from_node(key); // И удаляем требуемый ключ из листа
     return fix(item); // Вызываем функцию для восстановления свойств дерева.
   }
   TwoThreeNode *TwoThreeTree::findMin(TwoThreeNode *node) {
@@ -175,7 +171,7 @@ namespace itis {
         parent->first = parent->second;
         parent->second = parent->third;
         parent->third = nullptr;
-        parent->first->insert_to_node(parent->key[0]);
+        parent->first->insert_to_node(parent->key_[0]);
         parent->first->third = parent->first->second;
         parent->first->second = parent->first->first;
 
@@ -184,11 +180,11 @@ namespace itis {
 
         if (parent->first->first != nullptr) parent->first->first->parent = parent->first;
 
-        parent->remove_from_node(parent->key[0]);
+        parent->remove_from_node(parent->key_[0]);
         delete [] first;
       } else if (second == leaf) {
-        first->insert_to_node(parent->key[0]);
-        parent->remove_from_node(parent->key[0]);
+        first->insert_to_node(parent->key_[0]);
+        parent->remove_from_node(parent->key_[0]);
         if (leaf->first != nullptr) first->third = leaf->first;
         else if (leaf->second != nullptr) first->third = leaf->second;
 
@@ -199,9 +195,9 @@ namespace itis {
 
         delete [] second;
       } else if (third == leaf) {
-        second->insert_to_node(parent->key[1]);
+        second->insert_to_node(parent->key_[1]);
         parent->third = nullptr;
-        parent->remove_from_node(parent->key[1]);
+        parent->remove_from_node(parent->key_[1]);
         if (leaf->first != nullptr) second->third = leaf->first;
         else if (leaf->second != nullptr) second->third = leaf->second;
 
@@ -216,22 +212,22 @@ namespace itis {
           leaf->first = nullptr;
         }
 
-        leaf->insert_to_node(parent->key[1]);
+        leaf->insert_to_node(parent->key_[1]);
         if (second->size == 2) {
-          parent->key[1] = second->key[1];
-          second->remove_from_node(second->key[1]);
+          parent->key_[1] = second->key_[1];
+          second->remove_from_node(second->key_[1]);
           leaf->first = second->third;
           second->third = nullptr;
           if (leaf->first != nullptr) leaf->first->parent = leaf;
         } else if (first->size == 2) {
-          parent->key[1] = second->key[0];
+          parent->key_[1] = second->key_[0];
           leaf->first = second->second;
           second->second = second->first;
           if (leaf->first != nullptr) leaf->first->parent = leaf;
 
-          second->key[0] = parent->key[0];
-          parent->key[0] = first->key[1];
-          first->remove_from_node(first->key[1]);
+          second->key_[0] = parent->key_[0];
+          parent->key_[0] = first->key_[1];
+          first->remove_from_node(first->key_[1]);
           second->first = first->third;
           if (second->first != nullptr) second->first->parent = second;
           first->third = nullptr;
@@ -242,9 +238,9 @@ namespace itis {
             leaf->first = leaf->second;
             leaf->second = nullptr;
           }
-          second->insert_to_node(parent->key[1]);
-          parent->key[1] = third->key[0];
-          third->remove_from_node(third->key[0]);
+          second->insert_to_node(parent->key_[1]);
+          parent->key_[1] = third->key_[0];
+          third->remove_from_node(third->key_[0]);
           second->second = third->first;
           if (second->second != nullptr) second->second->parent = second;
           third->first = third->second;
@@ -255,9 +251,9 @@ namespace itis {
             leaf->second = leaf->first;
             leaf->first = nullptr;
           }
-          second->insert_to_node(parent->key[0]);
-          parent->key[0] = first->key[1];
-          first->remove_from_node(first->key[1]);
+          second->insert_to_node(parent->key_[0]);
+          parent->key_[0] = first->key_[1];
+          first->remove_from_node(first->key_[1]);
           second->first = first->third;
           if (second->first != nullptr) second->first->parent = second;
           first->third = nullptr;
@@ -267,20 +263,20 @@ namespace itis {
           leaf->first = leaf->second;
           leaf->second = nullptr;
         }
-        first->insert_to_node(parent->key[0]);
+        first->insert_to_node(parent->key_[0]);
         if (second->size == 2) {
-          parent->key[0] = second->key[0];
-          second->remove_from_node(second->key[0]);
+          parent->key_[0] = second->key_[0];
+          second->remove_from_node(second->key_[0]);
           first->second = second->first;
           if (first->second != nullptr) first->second->parent = first;
           second->first = second->second;
           second->second = second->third;
           second->third = nullptr;
         } else if (third->size == 2) {
-          parent->key[0] = second->key[0];
-          second->key[0] = parent->key[1];
-          parent->key[1] = third->key[0];
-          third->remove_from_node(third->key[0]);
+          parent->key_[0] = second->key_[0];
+          second->key_[0] = parent->key_[1];
+          parent->key_[1] = third->key_[0];
+          third->remove_from_node(third->key_[0]);
           first->second = second->first;
           if (first->second != nullptr) first->second->parent = first;
           second->first = second->second;
@@ -292,11 +288,11 @@ namespace itis {
         }
       }
     } else if (parent->size == 1) {
-      leaf->insert_to_node(parent->key[0]);
+      leaf->insert_to_node(parent->key_[0]);
 
       if (first == leaf && second->size == 2) {
-        parent->key[0] = second->key[0];
-        second->remove_from_node(second->key[0]);
+        parent->key_[0] = second->key_[0];
+        second->remove_from_node(second->key_[0]);
 
         if (leaf->first == nullptr) leaf->first = leaf->second;
 
@@ -306,8 +302,8 @@ namespace itis {
         second->third = nullptr;
         if (leaf->second != nullptr) leaf->second->parent = leaf;
       } else if (second == leaf && first->size == 2) {
-        parent->key[0] = first->key[1];
-        first->remove_from_node(first->key[1]);
+        parent->key_[0] = first->key_[1];
+        first->remove_from_node(first->key_[1]);
 
         if (leaf->second == nullptr) leaf->second = leaf->first;
 
@@ -323,7 +319,7 @@ namespace itis {
     TwoThreeNode *parent = leaf->parent;
 
     if (parent->first == leaf) {
-      parent->second->insert_to_node(parent->key[0]);
+      parent->second->insert_to_node(parent->key_[0]);
       parent->second->third = parent->second->second;
       parent->second->second = parent->second->first;
 
@@ -332,18 +328,18 @@ namespace itis {
 
       if (parent->second->first != nullptr) parent->second->first->parent = parent->second;
 
-      parent->remove_from_node(parent->key[0]);
+      parent->remove_from_node(parent->key_[0]);
       delete parent->first;
       parent->first = nullptr;
     } else if (parent->second == leaf) {
-      parent->first->insert_to_node(parent->key[0]);
+      parent->first->insert_to_node(parent->key_[0]);
 
       if (leaf->first != nullptr) parent->first->third = leaf->first;
       else if (leaf->second != nullptr) parent->first->third = leaf->second;
 
       if (parent->first->third != nullptr) parent->first->third->parent = parent->first;
 
-      parent->remove_from_node(parent->key[0]);
+      parent->remove_from_node(parent->key_[0]);
       delete [] parent->second;
       parent->second = nullptr;
     }

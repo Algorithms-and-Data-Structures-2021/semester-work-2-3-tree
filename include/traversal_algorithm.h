@@ -15,7 +15,7 @@
 
 namespace itis {
 
-  struct TraversalAlgorithm {
+  struct TraversalAlgorithm { // класс для вывода нашего 2-3 дерева, взят у Рамиля
     virtual ~TraversalAlgorithm() = default;
 
     virtual void Print(std::ostream &os, TwoThreeNode *node) const = 0;

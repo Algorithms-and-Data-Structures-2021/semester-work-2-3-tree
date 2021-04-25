@@ -10,20 +10,20 @@
 namespace itis {
 
   struct TwoThreeNode {
-    int size;
-    int key[3];
-    TwoThreeNode *first{nullptr};
-    TwoThreeNode *second{nullptr};
-    TwoThreeNode *third{nullptr};
-    TwoThreeNode *fourth{nullptr};
-    TwoThreeNode *parent{nullptr};
+    int size; // количество ключей в узле
+    int key_[3]; // массив с ключами
+    TwoThreeNode *first{nullptr}; // ссылка на первого ребенка
+    TwoThreeNode *second{nullptr}; // ссылка на второго ребенка
+    TwoThreeNode *third{nullptr}; // ссылка на третьего ребенка
+    TwoThreeNode *fourth{nullptr}; // ссылка на четвертого ребенка
+    TwoThreeNode *parent{nullptr}; // ссылка на родителя
 
 
-    explicit TwoThreeNode (int k, TwoThreeNode *first_ = nullptr, TwoThreeNode *second_ = nullptr,
+    explicit TwoThreeNode (int key, TwoThreeNode *first_ = nullptr, TwoThreeNode *second_ = nullptr,
                                   TwoThreeNode *third_ = nullptr, TwoThreeNode *fourth_ = nullptr,
                                                                   TwoThreeNode *parent_ = nullptr);
 
-    bool find(int k); // поиск ключа в вершине
+    bool find(int key); // поиск ключа в вершине
 
     void swap(int &x, int &y); // вспомогательная операция, используется в сортировке
 
@@ -33,11 +33,11 @@ namespace itis {
 
     void sort(); // сортировка ключей в вершине
 
-    void insert_to_node(int k); // вставка ключа в вершину
+    void insert_to_node(int key); // вставка ключа в вершину
 
-    void remove_from_node(int k); // удаление ключа из вершины
+    void remove_from_node(int key); // удаление ключа из вершины
 
-    void become_node2(int k, TwoThreeNode *first_, TwoThreeNode *second_); // преобразование в 2-вершину
+    void become_node2(int key, TwoThreeNode *first_, TwoThreeNode *second_); // преобразование в 2-вершину
 
     bool is_leaf(); // является ли вершина листом
   };

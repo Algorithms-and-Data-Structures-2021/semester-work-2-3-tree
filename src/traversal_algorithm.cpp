@@ -15,7 +15,7 @@ namespace itis {
       const auto *curr_node = nodes_queue.front();
       nodes_queue.pop();
 
-      os << curr_node->key[0]<<curr_node->key[1] << '\t';
+      os << curr_node->key_[0]<<curr_node->key_[1] << '\t';
 
       if (curr_node->first != nullptr) {
         nodes_queue.push(curr_node->first);

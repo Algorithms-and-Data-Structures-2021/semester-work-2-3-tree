@@ -7,26 +7,27 @@ using namespace itis;
 using namespace std;
 
 int main(int argc, char *argv[]) {
+  // здесь проводились тесты дерева
   TwoThreeTree tree;
 
+  // делаем вставку 4 элементов в пустое дерево
   for(int i = 1; i < 5; i++){
     tree.Insert(i);
   }
-//  for(int i = 1; i < 5; i++){
-//    tree.Remove(i);
-//  }
-tree.Remove(2);
-tree.Remove(4);
-tree.Remove(3);
 
+  // удаляем 3 элемента
+  tree.Remove(2);
+  tree.Remove(4);
+  tree.Remove(3);
 
+  // печатаем наше дерево(правда в нем всего одна вершина)
   TraversalAlgorithm *algorithm = new BreadthFirstTraversalAlgorithm;
 
   std::cout << "Level-order (BFS): ";
   tree.Traverse(*algorithm);
   std::cout << std::endl;
 
-  delete algorithm;
+  delete [] algorithm;
 
   for (int index = 0; index < argc; index++) {
     cout << index << ": " << argv[index] << endl;

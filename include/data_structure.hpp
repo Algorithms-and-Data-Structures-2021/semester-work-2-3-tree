@@ -10,19 +10,17 @@ namespace itis {
 
     void Clear(); // Очистка дерева
 
-    void Insert(int k);// Вставка в дерево;
+    void Insert(int key);// Вставка в дерево;
 
-    TwoThreeNode *Search(int k); // Поиск в дереве;
+    TwoThreeNode *Search(int key); // Поиск в дереве;
 
-    void *Remove(int k); // Удаление ключа из дерева
+    void *Remove(int key); // Удаление ключа из дерева
 
     TwoThreeNode *root(); // Возвращает корень дерева
 
     int Height(); // Возвращает высоту дерева
 
     void Traverse(const TraversalAlgorithm &algorithm) const; // Проходит по дереву в ширину
-
-    //~TwoThreeTree(); // То же самое, что Clear
 
 
    private:
@@ -36,13 +34,13 @@ namespace itis {
 
     TwoThreeNode *split(TwoThreeNode *item); // Метод для разделение вершины при переполнении;
 
-    void insert(int k, TwoThreeNode *node); // Вспомогательная функция, используется при вставке
+    void insert(int key, TwoThreeNode *node); // Вспомогательная функция, используется при вставке
 
     void clear(TwoThreeNode *node); // Вспомогательная функция, используется при очистке
 
-    TwoThreeNode *search(int k, TwoThreeNode *node); // Вспомогательная функция, используется при поиске
+    TwoThreeNode *search(int key, TwoThreeNode *node); // Вспомогательная функция, используется при поиске
 
-    TwoThreeNode *remove(int k, TwoThreeNode *node); // Вспомогательная функуция, используется при удалении
+    TwoThreeNode *remove(int key, TwoThreeNode *node); // Вспомогательная функуция, используется при удалении
 
     int height(TwoThreeNode *node); // Вспомогательная функция, используется при вычислении высоты
 

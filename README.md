@@ -105,7 +105,7 @@ python generate_csv_bench_dataset.py --samples 1000 <output> [args ...]
 - `<output>` - выходной файл и т.д.
 
 Тестовые данные представлены в CSV формате (см.
-[`dataset/data/dataset-example.csv`](dataset/data/dataset-example.csv)):
+[`dataset/data/dataset-example.csv`](dataset/dataset-example.csv)):
 
 ```csv
 id, full_name
