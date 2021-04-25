@@ -37,5 +37,8 @@ int main() {
   std::cout << std::endl;
 
   delete[] algorithm;
+
+  // очищаем дерево
+  tree.Clear();
   return 0;
 }
