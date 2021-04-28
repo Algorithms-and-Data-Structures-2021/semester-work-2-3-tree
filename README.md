@@ -1,6 +1,6 @@
 # 2-3 Tree
 
-[![CMake](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template/actions/workflows/cmake.yml/badge.svg)](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-template/actions/workflows/cmake.yml)
+[![CMake](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-2-3-tree/actions/workflows/cmake.yml/badge.svg)](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-2-3-tree/actions/workflows/cmake.yml)
 
 _Краткое описание семестрового проекта:_
 
