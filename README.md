@@ -85,7 +85,6 @@ cd dataset
  
 # Папка data организавана следующим образом:
 
-```shell
 dataset/data/
   insert/
     01/
