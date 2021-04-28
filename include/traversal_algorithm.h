@@ -2,11 +2,6 @@
 // Created by Marcusfam on 18.04.2021.
 //
 
-#ifndef SEMESTER_WORK_TEMPLATE_TRAVERSAL_ALGORITHM_H
-#define SEMESTER_WORK_TEMPLATE_TRAVERSAL_ALGORITHM_H
-
-#endif  //SEMESTER_WORK_TEMPLATE_TRAVERSAL_ALGORITHM_H
-
 #pragma once
 
 #include <ostream>

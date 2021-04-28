@@ -29,6 +29,9 @@ int main() {
   vector <string> files = {"100", "500", "1000", "5000", "10000", "50000", "100000", "500000", "1000000", "5000000"};
   TwoThreeTree tree;
 
+  // открываем файл для записи
+  auto output_file = fstream(output_path, ios::out);
+
   for (string file : files) { // Проходим по всем 10 .csv файлам
     for (string folder : folders) { // Проходим по всем 10 папкам с файлами
       for (int i = 1; i < 11; i++) { // Запускаем замерку времени 10 раз
@@ -77,12 +80,13 @@ int main() {
         cout << (path + "/" + "remove/" + folder + "/" + file) << endl;
         cout << time_elapsed_ns_remove << endl;
 
-        // Открываем файл для записи и вносим полученые данные
-        auto output_file = fstream(output_path, ios::app);
+        // Вносим полученные данные в файл для записи
         output_file << folder << "," << file << "," <<  i << "," << time_elapsed_ns_remove << endl;
-        output_file.close();
       }
     }
   }
+
+  //закрываем файл для записи
+  output_file.close();
   return 0;
 }

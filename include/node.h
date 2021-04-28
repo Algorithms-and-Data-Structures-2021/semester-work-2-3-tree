@@ -2,10 +2,6 @@
 // Created by annas on 10.04.2021.
 //
 #pragma once
-#ifndef SEMESTER_WORK_TEMPLATE_NODE_H
-#define SEMESTER_WORK_TEMPLATE_NODE_H
-
-#endif  //SEMESTER_WORK_TEMPLATE_NODE_H
 
 namespace itis {
 
