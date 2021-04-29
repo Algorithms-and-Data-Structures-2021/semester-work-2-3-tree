@@ -14,6 +14,8 @@ _Краткое описание семестрового проекта:_
  2. Нелистовые вершины содержат одно поле и 2 поддерева или 2 поля и 3 поддереваю
  3. Данные отсортированы (по принципу двоичного дерева поиска). Значение первого поля строго больше наибольшего значения в левом поддереве и меньше или равно наименьшему значению в правом поддереве(или в центральном поддереве). Значение второго поля(если оно есть) строго больше наибольшего значения в центральном поддереве и меньше или равно, чем наименьшее значение в правом поддереве.
 
+![Иллюстрация к проекту](https://github.com/Algorithms-and-Data-Structures-2021/semester-work-2-3-tree/blob/main/screenshot/2-3-tree.jpg)
+
 ## Команда "Bubble Quasar"
 
 | Фамилия Имя   | Вклад (%) | Прозвище              |
@@ -139,8 +141,8 @@ _Для запуска просто нажмите run benchmark_insert.cpp or b
 
 ## Источники
 
-1) [Habr about 2-3 tree](https://habr.com/ru/post/303374/)
-2) [Wiki about 2-3 tree](https://neerc.ifmo.ru/wiki/index.php?title=2-3_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE#.D0.A1.D0.BC._.D1.82.D0.B0.D0.BA.D0.B6.D0.B5)
-3) [Youtube: the best 2-3 tree](https://www.youtube.com/watch?v=PjlbovFEs0Y)
-4) [About tree data structures](https://medium.com/nuances-of-programming/%D0%B2%D1%81%D0%B5-%D1%87%D1%82%D0%BE-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D0%B7%D0%BD%D0%B0%D1%82%D1%8C-%D0%BE-%D0%B4%D1%80%D0%B5%D0%B2%D0%BE%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%D1%85-%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0%D1%85-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85-d750444a77ec)
+1. [Habr about 2-3 tree](https://habr.com/ru/post/303374/)
+2. [Wiki about 2-3 tree](https://neerc.ifmo.ru/wiki/index.php?title=2-3_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE#.D0.A1.D0.BC._.D1.82.D0.B0.D0.BA.D0.B6.D0.B5)
+3. [Youtube: the best 2-3 tree](https://www.youtube.com/watch?v=PjlbovFEs0Y)
+4. [About tree data structures](https://medium.com/nuances-of-programming/%D0%B2%D1%81%D0%B5-%D1%87%D1%82%D0%BE-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D0%B7%D0%BD%D0%B0%D1%82%D1%8C-%D0%BE-%D0%B4%D1%80%D0%B5%D0%B2%D0%BE%D0%B2%D0%B8%D0%B4%D0%BD%D1%8B%D1%85-%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0%D1%85-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85-d750444a77ec)
 
